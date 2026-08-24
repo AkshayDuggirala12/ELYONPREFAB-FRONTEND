@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-body: 'Public Sans', sans-serif;
+  --font-display: 'Public Sans', sans-serif;
+  --font-readable: 'Atkinson Hyperlegible Next', 'Public Sans', sans-serif;
+  --font-dyslexic: 'Lexend', 'Arial', sans-serif;
+
+  --steel: #1c2b3a;
+  --steel-mid: #2e4259;
+  --steel-deep: #0f171f;
+  --accent: #d4891a;
+  --accent-bright: #f2b84b;
+  --accent-deep: #9f6312;
+  --cream: #f7f3ee;
+  --white: #ffffff;
+  --surface: #ece6de;
+  --surface-deep: #d8cec2;
+  --text-dark: #1a1a1a;
+  --text-body: #45525f;
+  --text-muted: #66727d;
+  --teal: #1d6b6b;
+  --a11y-guide-y: 50vh;
+  --a11y-invert: 0;
+  --a11y-hue-rotate: 0deg;
+  --a11y-brightness: 1;
+  --a11y-saturation: 1;
+  --a11y-contrast-filter: 1;
+  --a11y-grayscale: 0;
+
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-dark);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(180deg, rgba(212, 137, 26, 0.08), transparent 16%),
+    linear-gradient(180deg, var(--surface), #f5f1eb 55%, #ffffff);
+  color: var(--text-dark);
+}
+
+body.a11y-large-text {
+  font-size: 17px;
+}
+
+body.a11y-readable-font {
+  --font-body: var(--font-readable);
+  --font-display: var(--font-readable);
+}
+
+body.a11y-dyslexic-font {
+  --font-body: var(--font-dyslexic);
+  --font-display: var(--font-dyslexic);
+  letter-spacing: 0.012em;
+  word-spacing: 0.08em;
+}
+
+body.a11y-big-cursor,
+body.a11y-big-cursor * {
+  cursor:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Ccircle cx='18' cy='18' r='11' fill='none' stroke='%235d56dd' stroke-width='4'/%3E%3Cpath d='M31 31 43 43' stroke='%235d56dd' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E")
+      10 10,
+    auto !important;
+}
+
+body.a11y-line-spacing p,
+body.a11y-line-spacing li,
+body.a11y-line-spacing label,
+body.a11y-line-spacing input,
+body.a11y-line-spacing textarea,
+body.a11y-line-spacing select {
+  line-height: 1.95 !important;
+}
+
+body.a11y-highlight-links a {
+  text-decoration: underline 0.18em;
+  text-decoration-color: #5d56dd;
+  text-underline-offset: 0.2em;
+}
+
+body.a11y-invert-colors {
+  --a11y-invert: 1;
+  --a11y-hue-rotate: 180deg;
+}
+
+body.a11y-brightness {
+  --a11y-brightness: 1.08;
+}
+
+body.a11y-high-contrast {
+  --a11y-contrast-filter: 1.28;
+}
+
+body.a11y-low-saturation {
+  --a11y-saturation: 0.72;
+}
+
+body.a11y-filter-grayscale {
+  --a11y-grayscale: 1;
+}
+
+body.a11y-stop-animations *,
+body.a11y-stop-animations *::before,
+body.a11y-stop-animations *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(28, 43, 58, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 43, 58, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 70%);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+h1 {
+  font-size: 4.6rem;
+  color: var(--white);
+}
+
+h2 {
+  font-size: 3rem;
+  color: var(--steel);
+}
+
+h3 {
+  font-size: 1.45rem;
+  color: var(--steel);
+}
+
+p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+main {
+  padding-bottom: 0;
+}
+
+@media (max-width: 1100px) {
+  h1 {
+    font-size: 3.8rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  h1 {
+    font-size: 2.8rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
