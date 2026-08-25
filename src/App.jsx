@@ -1,17 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import AdminDashboard from './AdminDashboard'
-import QuoteForm from './components/QuoteForm'
 import elyonLogo from './assets/elyon-logo.png'
 import './index.css'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+import Home from './Home';
+import ProductPage from './ProductPage';
 
-
-const heroStats = [
-  { value: 'Pan India', label: 'Execution reach' },
-  { value: '25+', label: 'Project packages supported' },
-  { value: '72K+', label: 'Sq. ft. delivered' },
-  { value: '2025', label: 'Established' },
-]
 
 const services = [
   {
@@ -215,7 +210,8 @@ const credentials = [
 ]
 
 const primaryNavLinks = [
-  { label: 'Home', href: '#top' },
+  // Changed href from '#top' to '/'
+  { label: 'Home', href: '/' },
   { label: 'Products', href: '#contact', menuId: 'products' },
   
   { label: 'Projects', href: '#projects' },
@@ -428,14 +424,14 @@ const megaMenus = {
         title: 'Living & Workspaces',
         columns: [
           [
-            { label: 'Labour Accommodation', href: '#contact' },
-            { label: 'Pre Fab Labour Accommodation', href: '#contact' },
-            { label: 'Room House', href: '#contact' },
+            { label: 'Labour Accommodation', href: '/products/labour-accommodation' },
+            { label: 'Pre Fab Labour Accommodation', href: '/products/prefab-labour-accommodation' },
+            { label: 'Room House', href: '/products/room-house' },
           ],
           [
-            { label: 'Site Office', href: '#contact' },
-            { label: 'Site Engineer – 4 Floor', href: '#contact' },
-            { label: 'Pre Fab School', href: '#contact' },
+            { label: 'Site Office', href: '/products/site-office' },
+            { label: 'Site Engineer – 4 Floor', href: '/products/site-engineer-4-floor' },
+            { label: 'Pre Fab School', href: '/products/prefab-school' },
           ],
         ],
       },
@@ -443,15 +439,15 @@ const megaMenus = {
         title: 'Structural & Utility Components',
         columns: [
           [
-            { label: 'Internal Partition', href: '#contact' },
-            { label: 'Prefab Partition', href: '#contact' },
-            { label: 'Mezzanine Flooring', href: '#contact' },
+            { label: 'Internal Partition', href: '/products/internal-partition' },
+            { label: 'Prefab Partition', href: '/products/prefab-partition' },
+            { label: 'Mezzanine Flooring', href: '/products/mezzanine-flooring' },
           ],
           [
-            { label: 'Precast M&S Block', href: '#contact' },
-            { label: 'Fire Exit Ramp', href: '#contact' },
-            { label: 'Pre Fab Toilet', href: '#contact' },
-            { label: 'Pre Fab Products', href: '#contact' },
+            { label: 'Precast M&S Block', href: '/products/precast-ms-block' },
+            { label: 'Fire Exit Ramp', href: '/products/fire-exit-ramp' },
+            { label: 'Pre Fab Toilet', href: '/products/prefab-toilet' },
+            { label: 'Pre Fab Products', href: '/products/prefab-products' },
           ],
         ],
       },
@@ -956,32 +952,7 @@ function appendScript({ id, src, innerHTML }) {
 }
 
 function App() {
-  const isAdminRoute =
-    typeof window !== 'undefined' &&
-    window.location.pathname.replace(/\/+$/, '').endsWith('/admin')
-
-  const heroVideoPath = `${import.meta.env.BASE_URL}hero-video.mp4`
-  const heroVideoRef = useRef(null)
-
-  const [dbProjects, setDbProjects] = useState([]);
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch('http://127.0.0.1:8000/api/projects/');
-        if (response.ok) {
-          const data = await response.json();
-          setDbProjects(data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch projects:", error);
-      }
-    };
-    fetchProjects();
-  }, []);
-
   const [activeMegaMenu, setActiveMegaMenu] = useState(null)
-  const [hasHeroVideo, setHasHeroVideo] = useState(true)
-  const [videoReady, setVideoReady] = useState(false)
   const [siteQuery, setSiteQuery] = useState('')
   const [accessibilityOpen, setAccessibilityOpen] = useState(false)
   const [accessibilitySettings, setAccessibilitySettings] = useState(
@@ -1228,24 +1199,6 @@ function App() {
     }
   }, [accessibilitySettings.readPage])
 
-  useEffect(() => {
-    const video = heroVideoRef.current
-
-    if (!video || !hasHeroVideo || !videoReady) {
-      return
-    }
-
-    if (accessibilitySettings.stopAnimations) {
-      video.pause()
-      return
-    }
-
-    const playPromise = video.play()
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => {})
-    }
-  }, [accessibilitySettings.stopAnimations, hasHeroVideo, videoReady])
-
   function toggleAccessibilityOption(key) {
     if (key === 'bionicReading') {
       return
@@ -1353,24 +1306,22 @@ function App() {
 
   const activeMegaMenuData = activeMegaMenu ? megaMenus[activeMegaMenu] : null
 
-  if (isAdminRoute) {
-    return <AdminDashboard />
-  }
-
   return (
+    <Router>
     <div className="site-shell">
       <header
         className={`site-header${activeMegaMenu ? ' has-mega-menu' : ''}`}
         onMouseLeave={() => setActiveMegaMenu(null)}
       >
         <div className="frame site-header-inner">
-          <a className="brand" href="#top">
+          {/* Changed <a> to <Link> and href to to="/" */}
+          <Link className="brand" to="/">
             <img
               alt="Elyon Prefab Private Limited"
               className="brand-logo"
               src={elyonLogo}
             />
-          </a>
+          </Link>
 
           <nav className="site-nav site-nav-primary" aria-label="Primary">
             {primaryNavLinks.map((link) => (
@@ -1505,155 +1456,16 @@ function App() {
         </div>
       </header>
 
-      <main>
-        <section
-          className={`hero${hasHeroVideo ? ' hero-video-active' : ''}`}
-          id="top"
-        >
-          <div className="hero-media" aria-hidden="true">
-            <video
-              autoPlay
-              className={`hero-video${videoReady ? ' is-ready' : ''}`}
-              loop
-              muted
-              onError={() => {
-                setHasHeroVideo(false)
-                setVideoReady(false)
-              }}
-              onLoadedData={() => setVideoReady(true)}
-              playsInline
-              preload="auto"
-              ref={heroVideoRef}
-            >
-              <source src={heroVideoPath} type="video/mp4" />
-            </video>
-          </div>
-          <div className="hero-overlay"></div>
-          <div className="frame hero-inner">
-            <div className="hero-copy hero-copy-home">
-              <a className="hero-pill-link" href="#about">
-                Learn about our leap
-                <span aria-hidden="true">{'->'}</span>
-              </a>
-              <p className="hero-home-caption">
-                Prefab infrastructure executed with sharper speed, site
-                control, and modular delivery discipline.
-              </p>
-            </div>
-          </div>
-        </section>
+      <Routes>
+        <Route path="/" element={<Home stopAnimations={accessibilitySettings.stopAnimations} />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/products/:productId" element={<ProductPage />} />
 
-        <section className="chapter chapter-overview" id="about">
-          <div className="frame corporate-shell">
-            <div className="corporate-copy">
-              <p className="eyebrow">Corporate Overview</p>
-              <h2>FROM SITE OFFICES TO STEEL STRUCTURES</h2>
-              <p className="corporate-lead">
-                Elyon operates across the prefab infrastructure spectrum,
-                supporting customers with modular buildings, labour
-                accommodation, structural steel, and turnkey site-ready
-                delivery.
-              </p>
-              <p className="corporate-body">
-                We serve industrial, institutional, and government-led work
-                where clients need faster mobilization, controlled fabrication,
-                and dependable execution from planning through handover.
-              </p>
-              <a className="section-link" href="#businesses">
-                Know More
-              </a>
-            </div>
-
-            <div className="overview-facts corporate-facts" aria-label="Company highlights">
-              {heroStats.map((stat) => (
-                <article key={stat.label}>
-                  <strong>{stat.value}</strong>
-                  <span>{stat.label}</span>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="chapter chapter-projects" id="projects">
-          <div className="frame">
-            <div className="section-heading">
-              <span className="section-number">01</span>
-              <div>
-                <p className="eyebrow">Portfolio</p>
-                <h2>Recent Projects</h2>
-              </div>
-            </div>
-            <div className="projects-list">
-              {/* This loops through your PostgreSQL data! */}
-              {dbProjects.map((project) => (
-                <article key={project.id} className="project-row">
-                  <div className="project-row-head">
-                    <div>
-                      <p className="project-location">{project.location}</p>
-                      <h3>{project.title}</h3>
-                    </div>
-                    <span className="project-badge">{project.duration}</span>
-                  </div>
-
-                  <div className="project-row-body">
-                    {/* Displays the image URL stored in your database */}
-                    <div style={{ backgroundImage: `url(${project.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '220px', borderRadius: '4px' }}></div>
-
-                    <div className="project-meta">
-                      <span>Execution Overview</span>
-                      <p>Turnkey prefabricated construction delivered on schedule. All structural assembly, finishing, and handover completed to client specifications.</p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="chapter chapter-contact" id="contact">
-          <div className="frame contact-layout">
-            <div className="contact-copy">
-              <p className="eyebrow">Get In Touch</p>
-              <h2>Let&apos;s build something extraordinary together.</h2>
-              <p className="contact-intro">
-                Elyon Prefab Pvt Ltd welcomes collaboration with infrastructure
-                developers, EPC contractors, industrial operators, and
-                government departments looking for prefab and modular
-                construction partners.
-              </p>
-
-              <div className="contact-detail-grid">
-                <div>
-                  <span>Director</span>
-                  <p>Abhishek Kondapalli</p>
-                </div>
-                <div>
-                  <span>Phone</span>
-                  <p>+91 88865 77785</p>
-                </div>
-                <div>
-                  <span>Email</span>
-                  <p>elyonprefab@gmail.com</p>
-                </div>
-                <div>
-                  <span>Office</span>
-                  <p>Hyderabad, Telangana, India</p>
-                </div>
-              </div>
-
-              <p className="contact-footnote">
-                Vendor registration documents and detailed project credentials
-                are available on request.{' '}
-                <a href="/admin">Open admin dashboard</a>
-              </p>
-            </div>
-
-            <QuoteForm />
-
-          </div>
-        </section>
-      </main>
+        {/* If they go to exactly /products, redirect them Home */}
+        <Route path="/products" element={<Navigate to="/" />} />
+        {/* If they type a totally random URL, redirect them Home */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
 
       <svg
         aria-hidden="true"
@@ -1918,6 +1730,7 @@ function App() {
         </div>
       </aside>
     </div>
+    </Router>
   )
 }
 
