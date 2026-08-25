@@ -1,0 +1,16 @@
+.project-media-video,
+.project-media-image {
+  width: 100%;
+  height: 220px;
+  border-radius: 4px;
+}
+
+.project-media-video {
+  object-fit: cover;
+}
+
+.project-media-image {
+  background-size: cover;
+  background-position: center;
+  min-height: 220px;
+}

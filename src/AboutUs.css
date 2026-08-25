@@ -1,0 +1,141 @@
+/* AboutUs.css */
+.about-wrapper {
+  background-color: #0a1017;
+  color: #fff;
+  padding: 120px 0 80px;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.about-hero {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.about-hero h1 {
+  color: #f2b84b;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.about-hero p {
+  color: #8f9bb3;
+  font-size: 1.2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.statutory-profile {
+  background-color: #0f171f;
+  border: 1px solid #2e4259;
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 80px;
+}
+
+.section-eyebrow {
+  color: #d4891a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.statutory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.stat-label {
+  color: #8f9bb3;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.leadership-section {
+  background-color: #1c2b3a;
+  padding: 80px 0;
+  border-top: 1px solid #2e4259;
+  border-bottom: 1px solid #2e4259;
+}
+
+.leadership-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.leadership-grid h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.leadership-grid p {
+  color: #8f9bb3;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.leadership-image {
+  background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200');
+  background-color: #0f171f;
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  border-radius: 12px;
+}
+
+.why-us-section {
+  padding: 80px 0;
+}
+
+.why-us-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.why-us-header h2 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #fff;
+}
+
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.why-us-card {
+  background-color: #0f171f;
+  padding: 40px 30px;
+  border-radius: 8px;
+  border: 1px solid #2e4259;
+}
+
+.why-us-card h3 {
+  color: #f2b84b;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.why-us-card p {
+  color: #8f9bb3;
+  line-height: 1.6;
+  font-size: 1rem;
+}

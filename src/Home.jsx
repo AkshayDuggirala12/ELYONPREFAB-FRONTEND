@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import QuoteForm from './components/QuoteForm'
+import './Home.css'
 
 const heroStats = [
   { value: 'Pan India', label: 'Execution reach' },
@@ -143,13 +144,16 @@ function Home({ stopAnimations }) {
                 <div className="project-row-body">
                   {/* Smart Media Renderer: Video if exists, else Image */}
                   {project.video_url ? (
-                    <video 
-                      src={project.video_url} 
-                      autoPlay loop muted playsInline 
-                      style={{ width: '100%', height: '220px', objectFit: 'cover', borderRadius: '4px' }} 
+                    <video
+                      src={project.video_url}
+                      autoPlay loop muted playsInline
+                      className="project-media-video"
                     />
                   ) : (
-                    <div style={{ backgroundImage: `url(${project.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '220px', borderRadius: '4px' }}></div>
+                    <div
+                      className="project-media-image"
+                      style={{ backgroundImage: `url(${project.image_url})` }}
+                    ></div>
                   )}
 
                   <div className="project-meta">

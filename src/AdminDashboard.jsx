@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './AdminDashboard.css';
 
 const AdminDashboard = () => {
   const [leads, setLeads] = useState([]);
@@ -124,9 +125,21 @@ const AdminDashboard = () => {
             <input type="text" placeholder="Duration Badge (e.g. 12 WKS)" value={projectData.duration} onChange={(e) => setProjectData({...projectData, duration: e.target.value})} required style={{ padding: '12px', borderRadius: '4px', border: '1px solid #2e4259', backgroundColor: '#0f171f', color: '#fff' }} />
             <input type="url" placeholder="Image URL (Direct link to photo)" value={projectData.image_url} onChange={(e) => setProjectData({...projectData, image_url: e.target.value})} required style={{ padding: '12px', borderRadius: '4px', border: '1px solid #2e4259', backgroundColor: '#0f171f', color: '#fff' }} />
 
-            <input type="text" placeholder="Video URL (Optional - e.g. .mp4 link)" value={projectData.video_url} onChange={(e) => setProjectData({...projectData, video_url: e.target.value})} style={{ padding: '12px', borderRadius: '4px', border: '1px solid #2e4259', backgroundColor: '#0f171f', color: '#fff' }} />
+            <input
+              type="text"
+              placeholder="Video URL (Optional - e.g. .mp4 link)"
+              value={projectData.video_url}
+              onChange={(e) => setProjectData({...projectData, video_url: e.target.value})}
+              className="admin-form-input"
+            />
 
-            <textarea placeholder="Custom Project Description (Optional)" value={projectData.description} onChange={(e) => setProjectData({...projectData, description: e.target.value})} rows={3} style={{ gridColumn: '1 / -1', padding: '12px', borderRadius: '4px', border: '1px solid #2e4259', backgroundColor: '#0f171f', color: '#fff', fontFamily: 'sans-serif', resize: 'vertical' }} />
+            <textarea
+              placeholder="Custom Project Description (Optional)"
+              value={projectData.description}
+              onChange={(e) => setProjectData({...projectData, description: e.target.value})}
+              rows="3"
+              className="admin-form-textarea"
+            />
 
             <div style={{ gridColumn: '1 / -1', display: 'flex', alignItems: 'center', gap: '15px', marginTop: '10px' }}>
               <button type="submit" style={{ padding: '12px 24px', backgroundColor: '#1d6b6b', color: '#fff', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}>Publish Project</button>

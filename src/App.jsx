@@ -6,6 +6,9 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Home from './Home';
 import ProductPage from './ProductPage';
+import AboutUs from './AboutUs';
+import Careers from './Careers';
+
 
 
 const services = [
@@ -210,15 +213,18 @@ const credentials = [
 ]
 
 const primaryNavLinks = [
-  // Changed href from '#top' to '/'
   { label: 'Home', href: '/' },
+
+  // Products keeps its mega-menu because you actually have 13 different product pages!
   { label: 'Products', href: '#contact', menuId: 'products' },
-  
-  { label: 'Projects', href: '#projects' },
-  
-  { label: 'Careers', href: '#contact', menuId: 'careers' },
-   // Triggers the mega-menu!
-  { label: 'About Us', href: '#about', menuId: 'about' },
+
+  { label: 'Projects', href: '/#projects' },
+
+  // Removed the menuId! Now it's just a direct link.
+  { label: 'Careers', href: '/careers' },
+
+  // Removed the menuId! Now it's just a direct link.
+  { label: 'About Us', href: '/about' },
 ]
 
 const utilityNavLinks = [
@@ -459,26 +465,26 @@ const megaMenus = {
         title: 'The Elyon Group',
         columns: [
           [
-            { label: 'Overview', href: '#about' },
-            { label: 'Company Profile', href: '#about' },
-            { label: 'Corporate Policies', href: '#investors' },
+            { label: 'Overview', href: '/about' },
+            { label: 'Company Profile', href: '/about' },
+            { label: 'Corporate Policies', href: '/about' },
           ],
           [
-            { label: 'Businesses', href: '#businesses' },
-            { label: 'Projects', href: '#projects' },
+            { label: 'Businesses', href: '/about' },
+            { label: 'Projects', href: '/#projects' },
           ],
           [
-            { label: 'Sustainability', href: '#sustainability' },
-            { label: 'Contact Directory', href: '#contact' },
+            { label: 'Sustainability', href: '/about' },
+            { label: 'Contact Directory', href: '/#contact' },
           ],
         ],
       },
       {
         title: 'Leadership',
         columns: [
-          [{ label: 'Director Profile', href: '#contact' }],
-          [{ label: 'Execution Highlights', href: '#investors' }],
-          [{ label: 'Business Enquiries', href: '#contact' }],
+          [{ label: 'Director Profile', href: '/about' }],
+          [{ label: 'Execution Highlights', href: '/about' }],
+          [{ label: 'Business Enquiries', href: '/#contact' }],
         ],
       },
     ],
@@ -489,16 +495,16 @@ const megaMenus = {
         title: 'Careers',
         columns: [
           [
-            { label: 'Why Elyon', href: '#investors' },
-            { label: 'Project Roles', href: '#contact' },
+            { label: 'Why Elyon', href: '/careers' },
+            { label: 'Project Roles', href: '/careers' },
           ],
           [
-            { label: 'Training & Growth', href: '#stories' },
-            { label: 'Vendor Partnerships', href: '#contact' },
+            { label: 'Training & Growth', href: '/careers' },
+            { label: 'Vendor Partnerships', href: '/careers' },
           ],
           [
             { label: 'Apply by Email', href: 'mailto:elyonprefab@gmail.com' },
-            { label: 'Recruitment Note', href: '#contact' },
+            { label: 'Recruitment Note', href: '/careers' },
           ],
         ],
       },
@@ -1460,6 +1466,10 @@ function App() {
         <Route path="/" element={<Home stopAnimations={accessibilitySettings.stopAnimations} />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/products/:productId" element={<ProductPage />} />
+
+        {/* NEW ROUTES ADDED HERE */}
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/careers" element={<Careers />} />
 
         {/* If they go to exactly /products, redirect them Home */}
         <Route path="/products" element={<Navigate to="/" />} />
