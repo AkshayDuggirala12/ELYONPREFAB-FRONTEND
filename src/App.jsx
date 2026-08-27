@@ -8,6 +8,7 @@ import Home from './Home';
 import ProductPage from './ProductPage';
 import AboutUs from './AboutUs';
 import Careers from './Careers';
+import Footer from './components/Footer';
 
 
 
@@ -215,7 +216,7 @@ const credentials = [
 const primaryNavLinks = [
   { label: 'Home', href: '/' },
 
-  // Products keeps its mega-menu because you actually have 13 different product pages!
+  // Products keeps its mega-menu because you actually have 15 different product pages!
   { label: 'Products', href: '#contact', menuId: 'products' },
 
   { label: 'Projects', href: '/#projects' },
@@ -431,13 +432,24 @@ const megaMenus = {
         columns: [
           [
             { label: 'Labour Accommodation', href: '/products/labour-accommodation' },
-            { label: 'Pre Fab Labour Accommodation', href: '/products/prefab-labour-accommodation' },
-            { label: 'Room House', href: '/products/room-house' },
+            { label: 'Site Offices', href: '/products/site-office' },
           ],
           [
-            { label: 'Site Office', href: '/products/site-office' },
-            { label: 'Site Engineer – 4 Floor', href: '/products/site-engineer-4-floor' },
-            { label: 'Pre Fab School', href: '/products/prefab-school' },
+            { label: "Officers' Quarters", href: '/products/officers-quarters' },
+            { label: 'School Buildings', href: '/products/prefab-school' },
+          ],
+        ],
+      },
+      {
+        title: 'Site Support Blocks',
+        columns: [
+          [
+            { label: 'Mess Blocks', href: '/products/mess-block' },
+            { label: 'Security Blocks', href: '/products/security-block' },
+          ],
+          [
+            { label: 'Toilet Blocks', href: '/products/prefab-toilet' },
+            { label: 'Storage & Warehouse Blocks', href: '/products/storage-warehouse-block' },
           ],
         ],
       },
@@ -445,15 +457,24 @@ const megaMenus = {
         title: 'Structural & Utility Components',
         columns: [
           [
-            { label: 'Internal Partition', href: '/products/internal-partition' },
-            { label: 'Prefab Partition', href: '/products/prefab-partition' },
-            { label: 'Mezzanine Flooring', href: '/products/mezzanine-flooring' },
+            { label: 'PPGI Sheds', href: '/products/ppgi-shed' },
+            { label: 'GI Sheet Site Barricading', href: '/products/gi-sheet-barricading' },
           ],
           [
-            { label: 'Precast M&S Block', href: '/products/precast-ms-block' },
-            { label: 'Fire Exit Ramp', href: '/products/fire-exit-ramp' },
-            { label: 'Pre Fab Toilet', href: '/products/prefab-toilet' },
-            { label: 'Pre Fab Products', href: '/products/prefab-products' },
+            { label: 'Mezzanine Flooring Systems', href: '/products/mezzanine-flooring' },
+            { label: 'Fire Exit Ramps & Access Structures', href: '/products/fire-exit-ramp' },
+          ],
+        ],
+      },
+      {
+        title: 'Residential & Hospitality',
+        columns: [
+          [
+            { label: 'Resort Blocks', href: '/products/resort-block' },
+            { label: 'Farmhouses', href: '/products/farmhouse' },
+          ],
+          [
+            { label: 'Kerala Manduva Pent Houses', href: '/products/kerala-manduva-penthouse' },
           ],
         ],
       },
@@ -959,6 +980,7 @@ function appendScript({ id, src, innerHTML }) {
 
 function App() {
   const [activeMegaMenu, setActiveMegaMenu] = useState(null)
+  const [activeProductCategory, setActiveProductCategory] = useState(0)
   const [siteQuery, setSiteQuery] = useState('')
   const [accessibilityOpen, setAccessibilityOpen] = useState(false)
   const [accessibilitySettings, setAccessibilitySettings] = useState(
@@ -1317,7 +1339,10 @@ function App() {
     <div className="site-shell">
       <header
         className={`site-header${activeMegaMenu ? ' has-mega-menu' : ''}`}
-        onMouseLeave={() => setActiveMegaMenu(null)}
+        onMouseLeave={() => {
+          setActiveMegaMenu(null)
+          setActiveProductCategory(0)
+        }}
       >
         <div className="frame site-header-inner">
           {/* Changed <a> to <Link> and href to to="/" */}
@@ -1335,13 +1360,20 @@ function App() {
                 <button
                   key={link.label}
                   className={`site-nav-trigger${activeMegaMenu === link.menuId ? ' is-active' : ''}`}
-                  onClick={() =>
+                  onClick={() => {
                     setActiveMegaMenu((current) =>
                       current === link.menuId ? null : link.menuId,
                     )
-                  }
-                  onFocus={() => setActiveMegaMenu(link.menuId)}
-                  onMouseEnter={() => setActiveMegaMenu(link.menuId)}
+                    setActiveProductCategory(0)
+                  }}
+                  onFocus={() => {
+                    setActiveMegaMenu(link.menuId)
+                    setActiveProductCategory(0)
+                  }}
+                  onMouseEnter={() => {
+                    setActiveMegaMenu(link.menuId)
+                    setActiveProductCategory(0)
+                  }}
                   type="button"
                 >
                   <span>{link.label}</span>
@@ -1393,71 +1425,78 @@ function App() {
               </button>
             </nav>
 
-            <form
-              aria-label="Site search"
-              className="site-search"
-              onSubmit={handleSiteSearch}
-              role="search"
-            >
-              <label className="sr-only" htmlFor="site-search-input">
-                Search the site
-              </label>
-              <input
-                id="site-search-input"
-                name="site-search"
-                onChange={(event) => setSiteQuery(event.target.value)}
-                placeholder="What are you looking for ?"
-                type="search"
-                value={siteQuery}
-              />
-              <button aria-label="Search site" type="submit">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <circle
-                    cx="10.5"
-                    cy="10.5"
-                    fill="none"
-                    r="6.5"
-                    stroke="currentColor"
-                    strokeWidth="1.7"
-                  />
-                  <path
-                    d="m16 16 4.5 4.5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeWidth="1.7"
-                  />
-                </svg>
-              </button>
-            </form>
           </div>
         </div>
 
-        <div className={`mega-menu${activeMegaMenuData ? ' is-open' : ''}`}>
+        <div
+          className={`mega-menu${activeMegaMenuData ? ' is-open' : ''}${
+            activeMegaMenu === 'products' ? ' mega-menu-flyout' : ''
+          }`}
+        >
           {activeMegaMenuData ? (
-            <div className="frame mega-menu-inner">
-              {activeMegaMenuData.groups.map((group) => (
-                <section className="mega-menu-group" key={group.title}>
-                  <h3>{group.title}</h3>
-                  <div className="mega-menu-divider"></div>
-                  <div className="mega-menu-columns">
-                    {group.columns.map((column, index) => (
-                      <div className="mega-menu-column" key={`${group.title}-${index}`}>
-                        {column.map((item) => (
-                          <a
-                            href={item.href}
-                            key={item.label}
-                            onClick={() => setActiveMegaMenu(null)}
-                          >
-                            {item.label}
-                          </a>
-                        ))}
-                      </div>
+            activeMegaMenu === 'products' ? (
+              <div className="frame mega-menu-inner mega-menu-inner-flyout">
+                <div className="mega-menu-categories">
+                  {activeMegaMenuData.groups.map((group, index) => (
+                    <button
+                      key={group.title}
+                      type="button"
+                      className={`mega-menu-category${
+                        activeProductCategory === index ? ' is-active' : ''
+                      }`}
+                      onMouseEnter={() => setActiveProductCategory(index)}
+                      onFocus={() => setActiveProductCategory(index)}
+                    >
+                      <span>{group.title}</span>
+                      <span className="mega-menu-category-caret" aria-hidden="true">
+                        &rsaquo;
+                      </span>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mega-menu-flyout-items">
+                  {activeMegaMenuData.groups[activeProductCategory].columns
+                    .flat()
+                    .map((item) => (
+                      <a
+                        href={item.href}
+                        key={item.label}
+                        onClick={() => {
+                          setActiveMegaMenu(null)
+                          setActiveProductCategory(0)
+                        }}
+                      >
+                        {item.label}
+                      </a>
                     ))}
-                  </div>
-                </section>
-              ))}
-            </div>
+                </div>
+              </div>
+            ) : (
+              <div className="frame mega-menu-inner">
+                {activeMegaMenuData.groups.map((group) => (
+                  <section className="mega-menu-group" key={group.title}>
+                    <h3>{group.title}</h3>
+                    <div className="mega-menu-divider"></div>
+                    <div className="mega-menu-columns">
+                      {group.columns.map((column, index) => (
+                        <div className="mega-menu-column" key={`${group.title}-${index}`}>
+                          {column.map((item) => (
+                            <a
+                              href={item.href}
+                              key={item.label}
+                              onClick={() => setActiveMegaMenu(null)}
+                            >
+                              {item.label}
+                            </a>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            )
           ) : null}
         </div>
       </header>
@@ -1476,6 +1515,9 @@ function App() {
         {/* If they type a totally random URL, redirect them Home */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+
+      {/* NEW FOOTER GOES HERE, RIGHT BELOW THE ROUTES! */}
+      <Footer />
 
       <svg
         aria-hidden="true"

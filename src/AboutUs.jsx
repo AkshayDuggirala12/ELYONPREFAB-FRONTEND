@@ -7,6 +7,7 @@ const AboutUs = () => {
       
       {/* HERO SECTION */}
       <div className="about-container about-hero">
+        
         <h1>Elyon Prefab Private Limited</h1>
         <p>
           We are a dedicated service provider specializing in <strong>Fabrication, Installation, Structural Erection, and Partition Services</strong>. 
@@ -25,10 +26,7 @@ const AboutUs = () => {
               <p className="stat-label">Corporate Identification Number (CIN)</p>
               <p className="stat-value">U41003TS2025PTC201544</p>
             </div>
-            <div>
-              <p className="stat-label">Incorporation Date</p>
-              <p className="stat-value">26th July, 2025</p>
-            </div>
+            
             <div>
               <p className="stat-label">Legal Status</p>
               <p className="stat-value">Private Limited Company</p>
@@ -55,14 +53,12 @@ const AboutUs = () => {
             <span className="section-eyebrow">Leadership</span>
             <h2>Driven by Execution.</h2>
             <p>
-              Led by Directors <strong>Prakasam Kondapalli</strong> and <strong>Kondapalli Aaron Abisheik</strong>, Elyon Prefab Pvt Ltd was built on a singular philosophy: 
-              discipline in fabrication equals speed on site. 
+              Led by Directors <strong>Abhishek Kondapalli</strong>,combines experience, precision, and disciplined onsite execution to deliver smarter, cost effective construction solutions.
             </p>
             <p>
-              With deep experience navigating the complexities of government construction and major infrastructure deployment, 
-              our leadership team ensures that every project is meticulously planned. We mitigate risk by bringing the 
-              heavy construction process indoors, delivering high-quality, customized modular solutions directly to your site.
+              With expertise in government and large-scale infrastructure projects, our leadership focuses on quality, speed, cost efficiency, and reliability ensuring every project is executed with confidence and control.
             </p>
+            <p>Planned with precision. Executed with discipline. Delivered cost-effectively</p>
           </div>
           <div className="leadership-image"></div>
         </div>

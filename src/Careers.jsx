@@ -43,21 +43,21 @@ const Careers = () => {
           
           <div className="opportunities-grid">
             <div className="opportunity-card">
-              <h3>Site Engineers</h3>
-              <p>Manage on-site assembly, coordinate with factory logistics, and ensure strict adherence to client timelines and safety codes.</p>
+              <h3>Office executive</h3>
+              <p>We are looking for an Office Executive with good communication skills to manage day-to-day office activities and coordinate with clients and internal teams. Freshers are welcome, and candidates with a Civil Engineering background are preferred. Basic knowledge of MS Excel and AutoCAD is required.</p>
               <a href="mailto:elyonprefab@gmail.com" className="opportunity-link">Apply via Email &rarr;</a>
             </div>
             
             <div className="opportunity-card">
-              <h3>Design & Drafting</h3>
-              <p>Convert client requirements into precision manufacturing blueprints for modular structures and heavy steel mezzanines.</p>
+              <h3>Sales executive</h3>
+              <p>We are looking for a motivated Sales Executive to meet clients, understand project requirements, prepare quotations, and drive sales. The role involves achieving monthly targets, maintaining strong client relationships, and coordinating closely with clients and project teams to ensure smooth project execution..</p>
               <a href="mailto:elyonprefab@gmail.com" className="opportunity-link">Apply via Email &rarr;</a>
             </div>
 
             <div className="opportunity-card">
-              <h3>Vendor Registration</h3>
-              <p>We are actively seeking reliable material suppliers and specialized subcontractors for upcoming Pan-India projects.</p>
-              <a href="#contact" className="opportunity-link">Submit Credentials &rarr;</a>
+              <h3>Site Engineer</h3>
+              <p>We are looking for a Site Engineer to supervise and coordinate day-to-day site activities, ensure work is carried out as per drawings and specifications, coordinate with workers and project teams, and monitor quality, progress, and safety at the site. Civil Engineering graduates with good communication and site management skills are preferred..</p>
+              <a href="mailto:elyonprefab@gmail.com" className="opportunity-link">Apply via Email &rarr;</a>
             </div>
           </div>
         </div>
@@ -66,8 +66,7 @@ const Careers = () => {
       {/* CONTACT FORM AT BOTTOM FOR VENDORS */}
       <div id="contact" className="careers-container">
         <div className="partner-section">
-            <h2>Partner With Us</h2>
-            <p>Vendors and subcontractors, please use the form below to submit your capabilities.</p>
+            
         </div>
         <QuoteForm />
       </div>

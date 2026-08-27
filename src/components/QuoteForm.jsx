@@ -39,7 +39,7 @@ const QuoteForm = () => {
   return (
     <div className="lead-form">
       <div className="lead-form-header">
-        <h3>Request a Custom Quote</h3>
+        <h3>Get a Quote</h3>
       </div>
       
       <form className="form-grid" onSubmit={handleSubmit}>
@@ -58,17 +58,27 @@ const QuoteForm = () => {
           <span>Site Dimensions</span>
           <input type="text" name="site_dimensions" value={formData.site_dimensions} onChange={handleChange} placeholder="e.g. 50x100 ft" />
         </label>
-        
         <label>
-          <span>Intended Use</span>
-          <select name="intended_use" value={formData.intended_use} onChange={handleChange}>
-            <option value="">Select an option</option>
-            <option value="Labour Accommodation">Labour Accommodation</option>
-            <option value="Site Office">Site Office</option>
-            <option value="Warehouse / Industrial">Warehouse / Industrial</option>
-            <option value="Other">Other</option>
-          </select>
-        </label>
+  <span>Intended Use</span>
+  <select name="intended_use" value={formData.intended_use} onChange={handleChange}>
+    <option value="">Select an option</option>
+    <option value="Prefabricated Labour Accommodation">Prefabricated Labour Accommodation</option>
+    <option value="Prefabricated Site Offices">Prefabricated Site Offices</option>
+    <option value="Prefabricated Officers’ Quarters">Prefabricated Officers’ Quarters</option>
+    <option value="Prefabricated Mess Blocks">Prefabricated Mess Blocks</option>
+    <option value="Prefabricated Security Blocks">Prefabricated Security Blocks</option>
+    <option value="Prefabricated Toilet Blocks">Prefabricated Toilet Blocks</option>
+    <option value="Prefabricated Storage & Warehouse Blocks">Prefabricated Storage & Warehouse Blocks</option>
+    <option value="PPGI Sheds">PPGI Sheds</option>
+    <option value="GI Sheet Site Barricading">GI Sheet Site Barricading</option>
+    <option value="Prefabricated School Buildings">Prefabricated School Buildings</option>
+    <option value="Fire Exit Ramps & Access Structures">Fire Exit Ramps & Access Structures</option>
+    <option value="Mezzanine Flooring Systems">Mezzanine Flooring Systems</option>
+    <option value="Prefabricated Resort Blocks">Prefabricated Resort Blocks</option>
+    <option value="Prefabricated Farmhouses">Prefabricated Farmhouses</option>
+    <option value="Kerala Manduva-Style Prefabricated Pent Houses">Kerala Manduva-Style Prefabricated Pent Houses</option>
+  </select>
+</label>
         
         <label className="full-span">
           <span>Project Timeline</span>
