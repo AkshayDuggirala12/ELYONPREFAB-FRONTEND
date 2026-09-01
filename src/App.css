@@ -54,7 +54,6 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  /* Removes any accidental background from the parent link container */
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -62,20 +61,16 @@
 }
 
 .brand-logo {
-  /* Controls the actual display size of your logo in the navbar */
   height: 5rem;
   width: auto;
   max-height: none;
   object-fit: contain;
-  
-  /* Completely removes the white pill box background, border, and shadow */
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   padding: 0;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  
   transition: transform 220ms var(--ease-liquid-fast);
 }
 
@@ -88,6 +83,22 @@
   display: grid;
   gap: 0.65rem;
   justify-items: end;
+}
+
+/* Nav + utility wrapper: on desktop this is invisible to layout
+   (its children sit directly in the header grid); on mobile it
+   becomes the collapsible dropdown panel controlled by the
+   hamburger button. */
+.site-header-nav-wrapper {
+  display: contents;
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+.mobile-submenu {
+  display: none;
 }
 
 .site-nav-primary {
@@ -339,7 +350,6 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* ===== Poojary-style Products flyout (categories left, items right) ===== */
 .mega-menu.mega-menu-flyout {
   max-height: 0;
 }
@@ -906,7 +916,7 @@
 }
 
 .chapter-strengths h2 {
-  color: darkblue !important; /* Forces the text to be dark blue */
+  color: darkblue !important; 
 }
 
 .strengths-layout {
@@ -1106,7 +1116,6 @@
 }
 
 .lead-form input,
-
 .lead-form select,
 .lead-form textarea {
   width: 100%;
@@ -1122,13 +1131,13 @@
     box-shadow 220ms var(--ease-liquid),
     transform 220ms var(--ease-liquid-fast);
 }
+
 .lead-form select option {
   background-color: #121c27;
   color: #ffffff; 
   padding: 0.5rem;
 }
 
-/* Custom scrollbar for the dropdown */
 .lead-form select {
   scrollbar-color: rgba(242, 184, 75, 0.65) rgba(255, 255, 255, 0.06);
   scrollbar-width: thin;
@@ -2285,350 +2294,204 @@ body.a11y-filter-green-red .site-shell > main {
   color: #5d56dd;
 }
 
-body.a11y-hide-media .site-shell > main img,
-body.a11y-hide-media .site-shell > main video,
-body.a11y-hide-media .site-shell > header .brand-logo {
-  opacity: 0 !important;
-}
-
-body.a11y-hide-media .site-shell > main img,
-body.a11y-hide-media .site-shell > main video,
-body.a11y-hide-media .site-shell > header .brand-logo {
-  visibility: hidden;
-}
-
-body.a11y-hide-media .hero-media {
-  background: #0a1017;
-}
-
-body.a11y-high-contrast .hero,
-body.a11y-high-contrast .chapter-businesses,
-body.a11y-high-contrast .chapter-sustainability,
-body.a11y-high-contrast .chapter-investors,
-body.a11y-high-contrast .chapter-contact,
-body.a11y-high-contrast .accessibility-statement {
-  background: #000 !important;
-}
-
-body.a11y-high-contrast .hero-overlay {
-  background: rgba(0, 0, 0, 0.82) !important;
-}
-
-body.a11y-high-contrast .primary-link,
-body.a11y-high-contrast .a11y-reset {
-  background: #fff;
-  color: #000;
-}
-
-@media (max-width: 1100px) {
-  .overview-facts,
-  .strengths-layout,
-  .contact-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .corporate-shell,
-  .sustainability-layout,
-  .split-heading,
-  .investor-panels {
-    grid-template-columns: 1fr;
-  }
-
-  .site-header-inner {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    min-height: auto;
-    padding: 1rem 1.4rem 1.2rem;
-  }
-
-  .site-nav,
-  .site-nav-primary,
-  .site-nav-utility {
-    justify-content: flex-start;
-  }
-
-  .mega-menu-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .mega-menu-inner {
-    grid-template-columns: 1fr;
-    column-gap: 0;
-  }
-
-  .mega-menu-group {
-    grid-column: auto;
-    max-width: none;
-  }
-
-  .site-header-tools {
-    justify-items: start;
-  }
-
-  .site-search {
-    width: min(28rem, 100%);
-  }
-
-  .brand-logo {
-    height: 3rem;
-    width: min(13rem, 56vw);
-  }
-
-  .brand {
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-md);
-  }
-
-  .services-grid,
-  .business-grid,
-  .story-grid,
-  .projects-list-featured,
-  .contact-detail-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .hero-copy h1 {
-    max-width: 11ch;
-    font-size: 3.2rem;
-  }
-
-  .hero-inner {
-    min-height: auto;
-    padding: 8.5rem 0 4rem;
-  }
-
-  .stats-band-inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .stat-block:nth-child(2n) {
-    border-right: none;
-  }
-
-  .investor-panel-support {
-    grid-template-columns: 1fr;
-  }
-
-  .project-row-body,
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .full-span {
-    grid-column: auto;
-  }
-}
-
-@media (max-width: 760px) {
-  .frame {
-    width: min(1180px, calc(100% - 24px));
-  }
-
-  .hero {
-    min-height: 34rem;
-  }
-
-  .hero-inner {
-    min-height: 34rem;
-    padding: 8rem 0 3.8rem;
-  }
-
-  .services-grid,
-  .business-grid,
-  .credential-list,
-  .contact-detail-grid,
-  .projects-list-featured,
-  .story-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-band-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .stat-block {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-    padding: 2rem 1.6rem;
-  }
-
-  .stat-block:last-child {
-    border-bottom: none;
-  }
-
-  .chapter,
-  .contact-layout {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
-  }
-
-  .chapter-overview {
-    padding-top: 2.2rem;
-  }
-
-  .section-heading {
-    grid-template-columns: 1fr;
-  }
-
-  .section-number {
-    font-size: 3.2rem;
-  }
-
-  .hero-copy h1 {
-    max-width: none;
-    font-size: 2.35rem;
-  }
-
-  .corporate-copy h2,
-  .sustainability-copy h2,
-  .social-copy h2,
-  .investors-copy h2,
-  .split-heading h2 {
-    font-size: 2.2rem;
-  }
-
-  .brand-logo {
-    height: 2.5rem;
-    width: 10.8rem;
-  }
-
-  .brand {
-    padding: 0.45rem 0.9rem;
-    border-radius: var(--radius-sm);
-  }
-
-  .site-search {
-    width: 100%;
-  }
-
-  .site-nav {
-    gap: 1rem;
-  }
-
-  .site-nav-primary a {
-    font-size: 0.92rem;
-  }
-
-  .mega-menu.is-open {
-    max-height: 34rem;
-  }
-
-  .mega-menu {
-    margin: 0 12px;
-  }
-
-  .mega-menu-columns {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .project-row-head {
-    align-items: start;
-    flex-direction: column;
-  }
-
-  .tag-list {
-    gap: 0.6rem;
-  }
-
-  .a11y-launcher {
-    right: 0.85rem;
-    bottom: 0.85rem;
-  }
-
-  .a11y-panel {
-    left: 0.5rem;
-    right: 0.5rem;
-    top: 0.5rem;
-    bottom: 0.5rem;
-    width: auto;
-  }
-
-  .a11y-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .a11y-color-filter-card,
-  .a11y-structure-list,
-  .a11y-panel-foot {
-    grid-column: 1 / -1;
-  }
-
-  .a11y-color-filter-card {
-    grid-column: 1 / -1;
-  }
-
-  .a11y-structure-list {
-    grid-template-columns: 1fr;
-  }
-
-  .a11y-panel-foot {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
 @media (max-width: 460px) {
   .a11y-panel-head {
     padding-inline: 1rem;
   }
-
   .a11y-panel-label {
     font-size: 1.5rem;
   }
-
   .a11y-panel-body {
     padding-inline: 1rem;
   }
-
   .a11y-grid,
   .a11y-color-filter-grid {
     grid-template-columns: 1fr;
   }
-
   .a11y-card,
   .a11y-color-filter-card {
     grid-column: auto;
   }
-  /* =========================================
+}
+
+/* =========================================
    📱 CRITICAL MOBILE RESPONSIVE FIXES 
    ========================================= */
-@media (max-width: 768px) {
-  /* 1. Fix the Header Bloat */
+@media (max-width: 900px) {
+  /* 1. Header compacting: a single, fixed-height row (logo + hamburger).
+     Everything else moves into the collapsible panel below, so the
+     fixed header never grows tall enough to bury page content again. */
   .site-header-inner {
     display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px 10px !important;
-    gap: 15px !important;
-  }
-
-  /* 2. Make the Navigation Links Wrap Neatly */
-  .site-nav-primary {
-    display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px !important;
+    gap: 10px !important;
+    min-height: auto;
+  }
+
+  /* 2. Logo scaling */
+  .brand-logo {
+    height: 2.5rem !important;
+  }
+
+  /* 3. Hamburger toggle, visible only on mobile */
+  .mobile-nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 15px !important;
-    padding-top: 0 !important;
+    align-items: center;
+    gap: 5px;
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 0;
+    border: 1px solid rgba(247, 243, 238, 0.18);
+    border-radius: var(--radius-pill, 999px);
+    background: rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    flex-shrink: 0;
   }
 
-  .site-nav a, .site-nav button {
-    font-size: 0.9rem !important;
+  .mobile-nav-toggle-bar {
+    display: block;
+    width: 1.15rem;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    transition: transform 220ms var(--ease-liquid, ease), opacity 180ms ease;
   }
 
-  /* 3. Center the Contact Us Section */
-  .site-header-tools {
+  .mobile-nav-toggle.is-active .mobile-nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-nav-toggle.is-active .mobile-nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-nav-toggle.is-active .mobile-nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* 4. The dropdown panel itself: hidden by default, becomes a
+     scrollable card anchored under the compact header row when open. */
+  .site-header-nav-wrapper {
+    display: none;
+  }
+
+  .site-header-nav-wrapper.is-open {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
     width: 100%;
+    max-height: min(70vh, 32rem);
+    overflow-y: auto;
+    margin-top: 10px;
+    padding: 0.75rem 0.25rem 1rem;
+    border-top: 1px solid rgba(247, 243, 238, 0.14);
+    order: 3;
   }
 
-  /* 4. Hide the Mega-Menu on Mobile to prevent overflow */
+  .site-header-nav-wrapper .site-nav-primary,
+  .site-header-nav-wrapper .site-nav-utility {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding: 0 !important;
+  }
+
+  .site-header-nav-wrapper .site-header-tools {
+    width: 100%;
+    display: block;
+    justify-items: stretch;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(247, 243, 238, 0.1);
+  }
+
+  .site-header-nav-wrapper .site-nav a,
+  .site-header-nav-wrapper .site-nav button {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.85rem 0.5rem !important;
+    font-size: 1rem !important;
+    white-space: normal;
+    border-bottom: 1px solid rgba(247, 243, 238, 0.08);
+  }
+
+  .site-header-nav-wrapper .utility-icon-button {
+    justify-content: flex-start;
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+  }
+
+  .site-header-nav-wrapper .utility-icon-button svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  /* 4b. Mobile "Products" (and any other mega-menu trigger) accordion.
+     The real hover mega-menu is hidden on mobile (rule 5 below), so this
+     is the actual tap-to-expand menu used on phones. */
+  .site-nav-item-with-submenu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-nav-item-with-submenu .site-nav-trigger {
+    border-bottom: none;
+  }
+
+  .mobile-submenu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 0 0.5rem;
+    border-bottom: 1px solid rgba(247, 243, 238, 0.08);
+  }
+
+  .mobile-submenu.is-open {
+    display: flex;
+  }
+
+  .mobile-submenu-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.6rem;
+  }
+
+  .mobile-submenu-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .mobile-submenu-group-title {
+    padding: 0.4rem 0.5rem 0.2rem;
+    color: var(--accent-bright, #f2b84b);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .mobile-submenu-group a {
+    padding: 0.6rem 0.5rem 0.6rem 1rem !important;
+    font-size: 0.92rem !important;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: none !important;
+  }
+
+  /* 5. Hide the Mega-Menu on Mobile to prevent overflow */
   .mega-menu {
     display: none !important;
   }
 
-  /* 5. Scale down the massive typography */
+  /* 6. Scale down the massive typography */
   .hero-copy h1 {
     font-size: 2.2rem !important;
     line-height: 1.1 !important;
@@ -2639,7 +2502,7 @@ body.a11y-high-contrast .a11y-reset {
     line-height: 1.2 !important;
   }
 
-  /* 6. Ensure layout grids stack perfectly on top of each other */
+  /* 7. Ensure layout grids stack perfectly on top of each other */
   .corporate-shell,
   .contact-layout,
   .footer-grid {
@@ -2648,9 +2511,55 @@ body.a11y-high-contrast .a11y-reset {
     gap: 30px !important;
   }
 
-  /* 7. Reduce empty space between sections */
-  .chapter {
-    padding: 4rem 0 !important;
+  /* 7b. Project cards: photo/video on top, description below —
+     previously these stayed side-by-side in a 2-column grid even on
+     narrow screens, which squeezed the media down to a sliver and
+     wrapped the description into a tall, cramped column. */
+  .project-row-body {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    padding: 1.1rem 1.1rem 1.3rem !important;
   }
-}
+
+  .project-row-head {
+    padding: 1.1rem 1.1rem !important;
+  }
+
+  .project-media-video,
+  .project-media-image,
+  .carousel-wrapper {
+    height: 200px !important;
+  }
+
+  /* 7c. Stats band ("Pan India / 10+ Years / 200+ Projects / ...")
+     was hardcoded to 5 columns always, so on a phone each block
+     shrank to a sliver and the labels overlapped each other. */
+  .stats-band-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    padding: 0 18px !important;
+  }
+
+  .stat-block {
+    padding: 1.6rem 1rem !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .stat-block:last-child {
+    border-bottom: none;
+  }
+
+  .stat-label {
+    max-width: none !important;
+  }
+
+  .stat-figure {
+    font-size: 1.9rem !important;
+  }
+
+  /* 8. Reduce empty space between sections, but keep enough
+     top clearance so content never sits under the fixed header. */
+  .chapter {
+    padding: 7rem 0 3rem !important;
+  }
 }

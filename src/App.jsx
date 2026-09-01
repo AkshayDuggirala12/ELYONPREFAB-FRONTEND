@@ -982,6 +982,7 @@ function App() {
   const [activeMegaMenu, setActiveMegaMenu] = useState(null)
   const [activeProductCategory, setActiveProductCategory] = useState(0)
   const [siteQuery, setSiteQuery] = useState('')
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const [accessibilityOpen, setAccessibilityOpen] = useState(false)
   const [accessibilitySettings, setAccessibilitySettings] = useState(
     defaultAccessibilitySettings,
@@ -1338,7 +1339,7 @@ function App() {
     <Router>
     <div className="site-shell">
       <header
-        className={`site-header${activeMegaMenu ? ' has-mega-menu' : ''}`}
+        className={`site-header${activeMegaMenu ? ' has-mega-menu' : ''}${mobileNavOpen ? ' mobile-nav-open' : ''}`}
         onMouseLeave={() => {
           setActiveMegaMenu(null)
           setActiveProductCategory(0)
@@ -1346,7 +1347,7 @@ function App() {
       >
         <div className="frame site-header-inner">
           {/* Changed <a> to <Link> and href to to="/" */}
-          <Link className="brand" to="/">
+          <Link className="brand" to="/" onClick={() => setMobileNavOpen(false)}>
             <img
               alt="Elyon Prefab Private Limited"
               className="brand-logo"
@@ -1354,77 +1355,126 @@ function App() {
             />
           </Link>
 
-          <nav className="site-nav site-nav-primary" aria-label="Primary">
-            {primaryNavLinks.map((link) => (
-              link.menuId ? (
+          <button
+            type="button"
+            className={`mobile-nav-toggle${mobileNavOpen ? ' is-active' : ''}`}
+            aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileNavOpen}
+            aria-controls="site-header-nav-panel"
+            onClick={() => setMobileNavOpen((open) => !open)}
+          >
+            <span className="mobile-nav-toggle-bar"></span>
+            <span className="mobile-nav-toggle-bar"></span>
+            <span className="mobile-nav-toggle-bar"></span>
+          </button>
+
+          <div
+            id="site-header-nav-panel"
+            className={`site-header-nav-wrapper${mobileNavOpen ? ' is-open' : ''}`}
+          >
+            <nav className="site-nav site-nav-primary" aria-label="Primary">
+              {primaryNavLinks.map((link) => (
+                link.menuId ? (
+                  <div className="site-nav-item-with-submenu" key={link.label}>
+                    <button
+                      className={`site-nav-trigger${activeMegaMenu === link.menuId ? ' is-active' : ''}`}
+                      onClick={() => {
+                        setActiveMegaMenu((current) =>
+                          current === link.menuId ? null : link.menuId,
+                        )
+                        setActiveProductCategory(0)
+                      }}
+                      onFocus={() => {
+                        setActiveMegaMenu(link.menuId)
+                        setActiveProductCategory(0)
+                      }}
+                      onMouseEnter={() => {
+                        setActiveMegaMenu(link.menuId)
+                        setActiveProductCategory(0)
+                      }}
+                      type="button"
+                    >
+                      <span>{link.label}</span>
+                      <span className="nav-caret" aria-hidden="true">
+                        <svg viewBox="0 0 10 7" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M1 1.25 5 5.25 9 1.25"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="1.2"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+
+                    {/* Mobile-only accordion list: the hover mega-menu below
+                        is hidden on small screens, so this is how "Products"
+                        etc. actually work with a touch tap on mobile. */}
+                    {megaMenus[link.menuId] && (
+                      <div
+                        className={`mobile-submenu${activeMegaMenu === link.menuId ? ' is-open' : ''}`}
+                      >
+                        {megaMenus[link.menuId].groups.map((group) => (
+                          <div className="mobile-submenu-group" key={group.title}>
+                            <span className="mobile-submenu-group-title">{group.title}</span>
+                            {group.columns.flat().map((item) => (
+                              <a
+                                key={item.label}
+                                href={item.href}
+                                onClick={() => {
+                                  setMobileNavOpen(false)
+                                  setActiveMegaMenu(null)
+                                }}
+                              >
+                                {item.label}
+                              </a>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a key={link.label} href={link.href} onClick={() => setMobileNavOpen(false)}>
+                    <span>{link.label}</span>
+                  </a>
+                )
+              ))}
+            </nav>
+
+            <div className="site-header-tools">
+              <nav className="site-nav site-nav-utility" aria-label="Utility">
+                {utilityNavLinks.map((link) => (
+                  <a key={link.label} href={link.href} onClick={() => setMobileNavOpen(false)}>
+                    {link.label}
+                  </a>
+                ))}
+
                 <button
-                  key={link.label}
-                  className={`site-nav-trigger${activeMegaMenu === link.menuId ? ' is-active' : ''}`}
+                  aria-label="Open accessibility options"
+                  className="utility-icon-button"
                   onClick={() => {
-                    setActiveMegaMenu((current) =>
-                      current === link.menuId ? null : link.menuId,
-                    )
-                    setActiveProductCategory(0)
-                  }}
-                  onFocus={() => {
-                    setActiveMegaMenu(link.menuId)
-                    setActiveProductCategory(0)
-                  }}
-                  onMouseEnter={() => {
-                    setActiveMegaMenu(link.menuId)
-                    setActiveProductCategory(0)
+                    setAccessibilityOpen(true)
+                    setMobileNavOpen(false)
                   }}
                   type="button"
                 >
-                  <span>{link.label}</span>
-                  <span className="nav-caret" aria-hidden="true">
-                    <svg viewBox="0 0 10 7" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M1 1.25 5 5.25 9 1.25"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.2"
-                      />
-                    </svg>
-                  </span>
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Zm0 0c2.6 2.6 4 6.02 4 9.5s-1.4 6.9-4 9.5m0-19c-2.6 2.6-4 6.02-4 9.5s1.4 6.9 4 9.5m-8.25-9.5h16.5M4.8 6.5h14.4M4.8 17.5h14.4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.2"
+                    />
+                  </svg>
                 </button>
-              ) : (
-                <a key={link.label} href={link.href}>
-                  <span>{link.label}</span>
-                </a>
-              )
-            ))}
-          </nav>
+              </nav>
 
-          <div className="site-header-tools">
-            <nav className="site-nav site-nav-utility" aria-label="Utility">
-              {utilityNavLinks.map((link) => (
-                <a key={link.label} href={link.href}>
-                  {link.label}
-                </a>
-              ))}
-
-              <button
-                aria-label="Open accessibility options"
-                className="utility-icon-button"
-                onClick={() => setAccessibilityOpen(true)}
-                type="button"
-              >
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Zm0 0c2.6 2.6 4 6.02 4 9.5s-1.4 6.9-4 9.5m0-19c-2.6 2.6-4 6.02-4 9.5s1.4 6.9 4 9.5m-8.25-9.5h16.5M4.8 6.5h14.4M4.8 17.5h14.4"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.2"
-                  />
-                </svg>
-              </button>
-            </nav>
-
+            </div>
           </div>
         </div>
 
